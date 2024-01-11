@@ -1,28 +1,16 @@
 <p align="center">
-  <a href="https://retromusic.app">
     <img src="assets\images\icon.png" height="128">
-    <h1 align="center">Paisa - Expense Tracker</h1>
-  </a>
+    <h1 align="center">Quotient - Expense Tracker</h1>
 </p>
-<p align="center">
- <a href="https://flutter.dev/" style="text-decoration:none" area-label="flutter">
-    <img src="https://img.shields.io/badge/Platform-Flutter%203.10.4-blue">
-  </a>
-   <a href="https://play.google.com/store/apps/details?id=dev.hemanths.paisa" style="text-decoration:none" area-label="play store">
-    <img src="https://img.shields.io/badge/Download-Google%20Play-green">
-  </a>
-  <a href="https://apps.microsoft.com/store/detail/9NQ2KR46N764?launch=true&mode=mini" style="text-decoration:none" area-label="windows">
-    <img src="https://img.shields.io/badge/Download-Microsoft%20Store-red">
-  </a>
-  <a href="https://github.com/RetroMusicPlayer/Paisa/releases/tag/v4.8.0" style="text-decoration:none" area-label="flutter">
-    <img src="https://img.shields.io/badge/Version-4.8.0-orange">
-  </a>
-</p>
-<p  align="center">
-    <h2> Material design expense manager</h2>
-</p>
+<div align="center">
 
-### ⚠ Join [@paisa group](https://t.me/app_paisa) on Telegram for important updates
+  ![GitHub Release](https://img.shields.io/github/v/release/xunafay/Quotient)
+
+</div>
+<div  align="center">
+    <h2> Material design expense manager</h2>
+    Originally forked from <a href="https://github.com/RetroMusicPlayer/Paisa">RetroMusicPlayer</a>
+</div>
 
 ### Screen shots
 
@@ -44,12 +32,12 @@
 | :--: | :--: | :--: | :--: |
 |Home|Accounts|Categories|Budget overview|
 
-### Expense Tracking
+### Features
 
 - Tracking expenses, incomes & deposits
 - Account & budget wise overview
 - Manage categories
-  
+
 ### Steps to translate
 
 1. Create `.arb` file inside `lib/localization/app_<language_code>.arb` example `app_en.arb`
@@ -58,7 +46,7 @@
 
    ```json
    {
-    "appTitle": "Paisa",
+    "appTitle": "Quotient",
     "@appTitle": {
         "description": "The app name",
         "type": "text",
@@ -71,7 +59,7 @@
 
     ```json
     {
-      "appTitle": "Paisa"
+      "appTitle": "Quotient"
     }
     ```
 
@@ -79,7 +67,7 @@
 
 ### Steps to build project
 1. Clone the Flutter Project:
-   * Use `git clone https://github.com/RetroMusicPlayer/Paisa.git` to download the project from the GitHub repository.
+   * Use `git clone https://github.com/xunafay/Quotient.git` to download the project from the GitHub repository.
 2. Install Dependencies:
    * Navigate to the project directory and run `flutter pub get` to install the required dependencies.
 3. Run the App:
@@ -87,13 +75,11 @@
 
 ### Download
 
-[<img alt='Get it on Google Play' width=256 height=100  src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/>](https://play.google.com/store/apps/details?id=dev.hemanths.paisa&hl=en_US&pli=1&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
-[<img  width=180 height=100 src="https://get.microsoft.com/images/en-us%20dark.svg" alt="Download Microsft Store" />](https://apps.microsoft.com/store/detail/9NQ2KR46N764?launch=true&mode=mini)
+Coming soon!
 
 ### License
 
-    Copyright (c) 2022, Hemanth S
-    All rights reserved.
-    
-    This source code is licensed under the GPLv3-style license found in the
-    LICENSE file in the root directory of this source tree.
+```
+This source code is licensed under the GPLv3-style license found in the
+LICENSE file in the root directory of this source tree.
+```
