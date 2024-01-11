@@ -1,10 +1,10 @@
 <p align="center">
     <img src="assets\images\icon.png" height="128">
-    <h1 align="center">Outlay - Expense Tracker</h1>
+    <h1 align="center">Quotient - Expense Tracker</h1>
 </p>
 <div align="center">
 
-  ![GitHub Release](https://img.shields.io/github/v/release/xunafay/Outlay)
+  ![GitHub Release](https://img.shields.io/github/v/release/xunafay/Quotient)
 
 </div>
 <div  align="center">
@@ -46,7 +46,7 @@
 
    ```json
    {
-    "appTitle": "Outlay",
+    "appTitle": "Quotient",
     "@appTitle": {
         "description": "The app name",
         "type": "text",
@@ -59,7 +59,7 @@
 
     ```json
     {
-      "appTitle": "Outlay"
+      "appTitle": "Quotient"
     }
     ```
 
@@ -67,7 +67,7 @@
 
 ### Steps to build project
 1. Clone the Flutter Project:
-   * Use `git clone https://github.com/xunafay/Outlay.git` to download the project from the GitHub repository.
+   * Use `git clone https://github.com/xunafay/Quotient.git` to download the project from the GitHub repository.
 2. Install Dependencies:
    * Navigate to the project directory and run `flutter pub get` to install the required dependencies.
 3. Run the App:
