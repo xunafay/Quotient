@@ -2,15 +2,15 @@
     <img src="assets\images\icon.png" height="128">
     <h1 align="center">Outlay - Expense Tracker</h1>
 </p>
-<p align="center">
-  ![GitHub Release](https://img.shields.io/github/v/release/xunafay/Outlay)
-</p>
-<p  align="center">
-    <h2> Material design expense manager</h2>
-</p>
+<div align="center">
 
-### Originally forked from RetroMusicPlayer
-https://github.com/RetroMusicPlayer/Paisa
+  ![GitHub Release](https://img.shields.io/github/v/release/xunafay/Outlay)
+
+</div>
+<div  align="center">
+    <h2> Material design expense manager</h2>
+    Originally forked from <a href="https://github.com/RetroMusicPlayer/Paisa">RetroMusicPlayer</a>
+</div>
 
 ### Screen shots
 
@@ -32,7 +32,7 @@ https://github.com/RetroMusicPlayer/Paisa
 | :--: | :--: | :--: | :--: |
 |Home|Accounts|Categories|Budget overview|
 
-### Expense Tracking
+### Features
 
 - Tracking expenses, incomes & deposits
 - Account & budget wise overview
