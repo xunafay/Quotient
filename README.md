@@ -1,22 +1,9 @@
 <p align="center">
-  <a href="https://retromusic.app">
     <img src="assets\images\icon.png" height="128">
     <h1 align="center">Outlay - Expense Tracker</h1>
-  </a>
 </p>
 <p align="center">
- <a href="https://flutter.dev/" style="text-decoration:none" area-label="flutter">
-    <img src="https://img.shields.io/badge/Platform-Flutter%203.10.4-blue">
-  </a>
-   <a href="https://play.google.com/store/apps/details?id=dev.hemanths.paisa" style="text-decoration:none" area-label="play store">
-    <img src="https://img.shields.io/badge/Download-Google%20Play-green">
-  </a>
-  <a href="https://apps.microsoft.com/store/detail/9NQ2KR46N764?launch=true&mode=mini" style="text-decoration:none" area-label="windows">
-    <img src="https://img.shields.io/badge/Download-Microsoft%20Store-red">
-  </a>
-  <a href="https://github.com/RetroMusicPlayer/Paisa/releases/tag/v4.8.0" style="text-decoration:none" area-label="flutter">
-    <img src="https://img.shields.io/badge/Version-4.8.0-orange">
-  </a>
+  ![GitHub Release](https://img.shields.io/github/v/release/xunafay/Outlay)
 </p>
 <p  align="center">
     <h2> Material design expense manager</h2>
@@ -72,7 +59,7 @@ https://github.com/RetroMusicPlayer/Paisa
 
     ```json
     {
-      "appTitle": "Paisa"
+      "appTitle": "Outlay"
     }
     ```
 
