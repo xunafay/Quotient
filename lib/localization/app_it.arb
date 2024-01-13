@@ -1,5 +1,5 @@
 {
-    "appTitle": "Paisa",
+    "appTitle": "Quotient",
     "home": "Home",
     "transactions": "Transazioni",
     "welcomeMessage": "Bentornato!",
@@ -181,7 +181,7 @@
     "edit": "Modifica",
     "fromAccount": "Trasferisci dall'account",
     "toAccount": "All'account",
-    "paisaLocked": "Paisa è bloccato",
+    "paisaLocked": "Quotient è bloccato",
     "authenticate": "Autenticati",
     "biometricMessage": "Tocca il sensore di impronte",
     "addedCategories": "Categorie aggiunte",

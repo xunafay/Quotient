@@ -1,5 +1,5 @@
 {
-    "appTitle": "Paisa",
+    "appTitle": "Quotient",
     "@appTitle": {
         "description": "The app name",
         "type": "text"
@@ -840,7 +840,7 @@
         "description": "Section title text shown on the export and import page",
         "type": "text"
     },
-    "backupAndRestoreJSONDesc": "The file will be a plain JSON file created and exported to save. Please note that if in case anything changes happen in the future in Paisa then this file will be invalid to import",
+    "backupAndRestoreJSONDesc": "The file will be a plain JSON file created and exported to save. Please note that if in case anything changes happen in the future in Quotient then this file will be invalid to import",
     "@backupAndRestoreJSONDesc": {
         "description": "Message shown on the import and export screen",
         "type": "text"
@@ -905,7 +905,7 @@
         "description": "Text shown on the title section of account in transfer section in transaction page",
         "type": "text"
     },
-    "paisaLocked": "Paisa Locked",
+    "paisaLocked": "Quotient Locked",
     "@paisaLocked": {
         "description": "Text shown on the title section of biometric screen",
         "type": "text"
@@ -990,7 +990,7 @@
         "description": "Text shown on settings page",
         "type": "text"
     },
-    "lockAppDescription": "When enabled, you'll need to use fingerprint to open Paisa.",
+    "lockAppDescription": "When enabled, you'll need to use fingerprint to open Quotient.",
     "@lockAppDescription": {
         "description": "Text shown on settings page",
         "type": "text"
