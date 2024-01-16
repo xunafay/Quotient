@@ -78,3 +78,4 @@ android/app/google-services.json
 .flutter-plugins-dependencies
 *.g.dart
 *.freezed.dart
+dependency_injection.config.dart

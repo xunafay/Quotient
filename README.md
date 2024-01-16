@@ -70,7 +70,9 @@
    * Use `git clone https://github.com/xunafay/Quotient.git` to download the project from the GitHub repository.
 2. Install Dependencies:
    * Navigate to the project directory and run `flutter pub get` to install the required dependencies.
-3. Run the App:
+3. Build generated files:
+   * Run `dart run build_runner build --delete-conflicting-outputs` to generate required files.
+4. Run the App:
    * Connect a device or emulator and run the app using `flutter run --flavor dev` or through your IDE.
 
 ### Download
