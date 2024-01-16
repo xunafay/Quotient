@@ -2,11 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/adapters.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'package:paisa/core/common.dart';
-import 'package:paisa/features/profile/presentation/cubit/profile_cubit.dart';
+import 'package:paisa/features/profile/business/bloc/profile_bloc.dart';
 
 class PaisaUserImageWidget extends StatelessWidget {
   const PaisaUserImageWidget({
@@ -22,12 +21,13 @@ class PaisaUserImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<Box>(
-      valueListenable: BlocProvider.of<ProfileCubit>(context)
-          .settings
-          .listenable(keys: [userImageKey]),
-      builder: (context, value, _) {
-        String image = value.get(userImageKey, defaultValue: '');
+    return BlocBuilder<ProfileBloc, ProfileState>(
+      builder: (context, state) {
+        String image = '';
+        if (state is ProfileLoadedState) {
+          image = state.image;
+        }
+
         if (image == 'no-image') {
           image = '';
         }
@@ -55,7 +55,9 @@ class PaisaUserImageWidget extends StatelessWidget {
                     alignment: AlignmentDirectional.bottomEnd,
                     label: GestureDetector(
                       onTap: () {
-                        value.put(userImageKey, '');
+                        context.read<ProfileBloc>().add(
+                              ProfileImageUpdateEvent(image: ''),
+                            );
                       },
                       child: Center(
                         child: Icon(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paisa/core/widgets/color_palette.dart';
 import 'package:paisa/features/home/presentation/widgets/welcome_widget.dart';
-import 'package:paisa/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:paisa/features/profile/presentation/widgets/user_profile_bottomshee_widget.dart';
 import 'package:paisa/features/settings/domain/use_case/setting_use_case.dart';
 import 'package:paisa/main.dart';
@@ -33,10 +32,7 @@ class PaisaUserWidget extends StatelessWidget {
           ),
         ),
         context: context,
-        builder: (_) => UserProfileBottomSheetWidget(
-          settingsUseCase: getIt.get<SettingsUseCase>(),
-          profileCubit: getIt.get<ProfileCubit>(),
-        ),
+        builder: (_) => const UserProfileBottomSheetWidget(),
       ),
       child: const UserImageWidget(),
     );

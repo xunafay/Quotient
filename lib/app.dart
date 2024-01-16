@@ -15,6 +15,7 @@ import 'package:paisa/features/country_picker/domain/entities/country.dart';
 import 'package:paisa/features/home/presentation/bloc/home/home_bloc.dart';
 import 'package:paisa/features/home/presentation/controller/summary_controller.dart';
 import 'package:paisa/features/home/presentation/cubit/overview/overview_cubit.dart';
+import 'package:paisa/features/profile/business/bloc/profile_bloc.dart';
 import 'package:paisa/features/settings/presentation/cubit/settings_cubit.dart';
 import 'package:paisa/main.dart';
 import 'package:provider/provider.dart';

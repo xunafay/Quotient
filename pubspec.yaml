@@ -55,6 +55,8 @@ dependencies:
   json_annotation: ^4.8.1
   event_bus_plus: ^0.6.1
   flutter_colorpicker: ^1.0.3
+  bloc: ^8.1.2
+  copy_with_extension: ^5.0.4
 
 dev_dependencies:
   build_runner: ^2.3.2
@@ -68,8 +70,9 @@ dev_dependencies:
   msix: ^3.7.0
   freezed: ^2.4.2
   json_serializable: ^6.7.1
+  copy_with_extension_gen: ^5.0.4
 
-dependency_overrides:
+#dependency_overrides:
   #intl: ^0.18.0
   #material_color_utilities: ^0.2.0
 

@@ -1,4 +1,7 @@
 global_options:
+  copy_with_extension_gen:
+    options:
+      copy_with_null: true # default is false
   freezed:freezed:
     runs_before:
       - hive_generator:hive_generator
