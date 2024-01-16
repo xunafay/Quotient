@@ -1,5 +1,5 @@
 {
-    "appTitle": "Paisa",
+    "appTitle": "Quotient",
     "home": "Início",
     "transactions": "Transações",
     "welcomeMessage": "Bem-vindo de volta!",
@@ -169,7 +169,7 @@
     "introCTA": "Iniciar",
     "deleteDebtOrCredit": "A exclusão do débito ou crédito exclui todos os registros relacionados a ele",
     "backupAndRestoreJSONTitle": "Exportar dados como arquivo JSON",
-    "backupAndRestoreJSONDesc": "O arquivo será um arquivo JSON simples criado e exportado para salvar. Por favor, note que se houver alguma alteração no Paisa no futuro, esse arquivo será inválido para importação.",
+    "backupAndRestoreJSONDesc": "O arquivo será um arquivo JSON simples criado e exportado para salvar. Por favor, note que se houver alguma alteração no Quotient no futuro, esse arquivo será inválido para importação.",
     "emptyBudgetMessageTitle": "Não foram definidos orçamentos para nenhuma categoria",
     "emptyBudgetMessageSubTitle": "Defina um orçamento para qualquer categoria, e essa categoria será exibida aqui.",
     "recurringEmptyMessageTitle": "Sem eventos recorrentes?",
@@ -182,7 +182,7 @@
     "edit": "Editar",
     "fromAccount": "Transferência da conta",
     "toAccount": "Transferência para a conta",
-    "paisaLocked": "Paisa bloqueado",
+    "paisaLocked": "Quotient bloqueado",
     "authenticate": "Autenticar",
     "biometricMessage": "Toque no sensor de impressão digital",
     "addedCategories": "Categorias adicionadas",
@@ -198,5 +198,5 @@
     "accountStyleDescription": "Selecionar seu estilo de exibição da conta preferido: vertical ou horizontal",
     "supportMe": "Ajude-me",
     "supportMeDescription": "Se você acha que eu mereço um pequeno mimo pelo meu trabalho árduo, pode me comprar uma cerveja virtual",
-    "lockAppDescription": "Quando habilitado, você precisará usar a impressão digital para abrir o Paisa."
+    "lockAppDescription": "Quando habilitado, você precisará usar a impressão digital para abrir o Quotient."
 }
