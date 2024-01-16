@@ -1,5 +1,5 @@
 {
-  "appTitle": "Paisa",
+  "appTitle": "Quotient",
   "home": "Галоўная",
   "transactions": "Транзакцыі",
   "welcomeMessage": "Сардэчна запрашаем!",
@@ -180,7 +180,7 @@
   "edit": "Рэдагаваць",
   "fromAccount": "Перавесці рахунак з...",
   "toAccount": "Перавесці рахунак у...",
-  "paisaLocked": "Paisa закрыта!",
+  "paisaLocked": "Quotient закрыта!",
   "authenticate": "Аўтэнтыфікаваць",
   "biometricMessage": "Дакраніцеся да сэнсару адбітка пальцаў",
   "addedCategories": "Дабаўленыя катэгорыі",
@@ -196,5 +196,5 @@
   "accountStyleDescription": "Абярыце пераважны варыянт адлюстравання рахункаў: вертыкальны або гарызантальны",
   "supportMe": "Падтрымаць праект",
   "supportMeDescription": "Калі Вам падабаецца дадатак, можаце падтрымаць праект фінансава",
-  "lockAppDescription": "Калі ўключана, для ўваходу ў Paisa неабходна выкарыстоўваць адбітак пальца"
+  "lockAppDescription": "Калі ўключана, для ўваходу ў Quotient неабходна выкарыстоўваць адбітак пальца"
 }
