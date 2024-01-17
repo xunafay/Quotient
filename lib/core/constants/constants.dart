@@ -1,8 +1,9 @@
-const gitHubUrl = 'https://github.com/h4h13/paisa';
+const gitHubUrl = 'https://github.com/xunafay/Quotient';
 const playStoreUrl =
-    'https://play.google.com/store/apps/details?id=dev.hemanths.paisa';
-const telegramGroupUrl = 'https://t.me/app_paisa';
-const termsAndConditionsUrl = 'https://hemanths.dev/privacy';
+    'https://play.google.com/store/apps/details?id=com.hexodine.quotient';
+// const telegramGroupUrl = 'https://t.me/app_paisa';
+const termsAndConditionsUrl =
+    'https://github.com/xunafay/Quotient/blob/dev/PRIVACY_POLICY.md';
 
 const String themeModeKey = 'key_theme_mode';
 const String appColorKey = 'key_app_color';
@@ -28,4 +29,4 @@ const String selectedHomeFilterExpenseKey = "selected_home_filter_expense_key";
 const String calendarFormatKey = "calendar_format_key";
 const String appLanguageKey = "app_language_key";
 const String appFontChangerKey = "app_font_changer_key";
-const buyMeCoffeeUrl = 'https://www.buymeacoffee.com/h4h13';
+// const buyMeCoffeeUrl = 'https://www.buymeacoffee.com/h4h13';

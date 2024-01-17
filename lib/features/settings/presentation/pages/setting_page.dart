@@ -132,15 +132,15 @@ class SettingsPage extends StatelessWidget {
             SettingsGroup(
               title: context.loc.socialLinks,
               options: [
-                SettingsOption(
-                  icon: MdiIcons.glassMugVariant,
-                  title: context.loc.supportMe,
-                  subtitle: context.loc.supportMeDescription,
-                  onTap: () => launchUrl(
-                    Uri.parse(buyMeCoffeeUrl),
-                    mode: LaunchMode.externalApplication,
-                  ),
-                ),
+                // SettingsOption(
+                //   icon: MdiIcons.glassMugVariant,
+                //   title: context.loc.supportMe,
+                //   subtitle: context.loc.supportMeDescription,
+                //   onTap: () => launchUrl(
+                //     Uri.parse(buyMeCoffeeUrl),
+                //     mode: LaunchMode.externalApplication,
+                //   ),
+                // ),
                 const Divider(),
                 SettingsOption(
                   icon: MdiIcons.star,
@@ -162,15 +162,15 @@ class SettingsPage extends StatelessWidget {
                   ),
                 ),
                 const Divider(),
-                SettingsOption(
-                  icon: MdiIcons.send,
-                  title: context.loc.telegram,
-                  subtitle: context.loc.telegramGroup,
-                  onTap: () => launchUrl(
-                    Uri.parse(telegramGroupUrl),
-                    mode: LaunchMode.externalApplication,
-                  ),
-                ),
+                // SettingsOption(
+                //   icon: MdiIcons.send,
+                //   title: context.loc.telegram,
+                //   subtitle: context.loc.telegramGroup,
+                //   onTap: () => launchUrl(
+                //     Uri.parse(telegramGroupUrl),
+                //     mode: LaunchMode.externalApplication,
+                //   ),
+                // ),
                 const Divider(),
                 SettingsOption(
                   icon: MdiIcons.note,
