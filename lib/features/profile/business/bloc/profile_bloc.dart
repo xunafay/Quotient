@@ -12,12 +12,20 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ProfileBloc(
     this.repository,
   ) : super(ProfileLoadingState()) {
-    on<ProfileUpdateEvent>((event, emit) {
-      repository.saveName(event.name);
-    });
-
     on<ProfileImageSelectedEvent>((event, emit) async {
       final result = await repository.saveImage(event.image);
+      result.fold((failure) {
+        emit(ProfileErrorState(failure: failure.toString()));
+      }, (image) {
+        emit(ProfileLoadedState(
+          name: repository.name,
+          image: image,
+        ));
+      });
+    });
+
+    on<ProfileImageUpdateEvent>((event, emit) async {
+      final result = await repository.saveImagePath(event.image);
       result.fold((failure) {
         emit(ProfileErrorState(failure: failure.toString()));
       }, (image) {

@@ -24,6 +24,12 @@ class LocalProfileProvider implements ProfileRepository {
   }
 
   @override
+  Future<Either<Failure, String>> saveImagePath(String path) async {
+    settings.put(userImageKey, path);
+    return right(path);
+  }
+
+  @override
   String get image => settings.get(userImageKey, defaultValue: '');
 
   @override
