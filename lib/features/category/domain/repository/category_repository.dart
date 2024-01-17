@@ -1,3 +1,4 @@
+import 'package:paisa/core/enum/category_types.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
 
 abstract class CategoryRepository {
@@ -8,7 +9,7 @@ abstract class CategoryRepository {
     required String? desc,
     required double? budget,
     required bool? isBudget,
-    required bool? isDefault,
+    required CategoryType? type,
   });
 
   Future<void> delete(int key);
@@ -23,7 +24,7 @@ abstract class CategoryRepository {
     required String? desc,
     required double? budget,
     required bool isBudget,
-    required bool isDefault,
+    required CategoryType? type,
   });
 
   Future<void> clear();

@@ -71,3 +71,12 @@ class UpdateCategoryBudgetState extends CategoryState {
   @override
   List<Object?> get props => [isBudget];
 }
+
+class CategoryTypeSelectedState extends CategoryState {
+  const CategoryTypeSelectedState(this.categoryType);
+
+  final CategoryType categoryType;
+
+  @override
+  List<Object?> get props => [categoryType];
+}

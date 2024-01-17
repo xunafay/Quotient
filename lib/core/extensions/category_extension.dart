@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:paisa/core/enum/category_types.dart';
 import 'package:paisa/features/category/data/model/category_model.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
 
@@ -13,7 +14,7 @@ extension CategoryModelHelper on CategoryModel {
       description: description,
       isBudget: isBudget,
       superId: superId,
-      isDefault: isDefault,
+      type: type,
     );
   }
 }
@@ -27,9 +28,7 @@ extension CategoryModelsHelper on Iterable<CategoryModel> {
       sorted((a, b) => a.name!.compareTo(b.name!));
 
   Iterable<CategoryModel> get filterDefault {
-    return where((element) => element.isDefault != null)
-        .where((element) => !element.isDefault!)
-        .sort();
+    return where((element) => element.type != CategoryType.transfer).sort();
   }
 
   List<CategoryEntity> toEntities() =>

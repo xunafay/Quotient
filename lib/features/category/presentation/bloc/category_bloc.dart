@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:paisa/core/enum/category_types.dart';
 import 'package:paisa/features/category/data/model/category_model.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
 import 'package:paisa/features/category/domain/use_case/category_use_case.dart';
@@ -28,6 +29,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     on<CategoryIconSelectedEvent>(_categoryIcon);
     on<UpdateCategoryBudgetEvent>(_updateCategoryBudget);
     on<CategoryColorSelectedEvent>(_updateCategoryColor);
+    on<UpdateCategoryTypeEvent>(_updateCategoryType);
   }
 
   final AddCategoryUseCase addCategoryUseCase;
@@ -42,7 +44,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   String? categoryTitle;
   CategoryEntity? currentCategory;
   bool? isBudgetSet = false;
-  bool? isDefault = false;
+  CategoryType? type = CategoryType.expense;
   int? selectedColor;
   int? selectedIcon;
 
@@ -64,7 +66,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
       currentCategory = category;
       isBudgetSet = category.isBudget;
       selectedColor = category.color ?? Colors.red.shade100.value;
-      isDefault = category.isDefault;
+      type = category.type;
       emit(CategorySuccessState(category));
     }
   }
@@ -97,7 +99,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
         budget: budget ?? 0,
         isBudget: isBudgetSet ?? false,
         color: color,
-        isDefault: isDefault ?? false,
+        type: type ?? CategoryType.expense,
       ));
     } else {
       if (currentCategory == null) return;
@@ -109,7 +111,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
         description: description,
         icon: icon,
         isBudget: isBudgetSet ?? false,
-        isDefault: isDefault ?? false,
+        type: type ?? CategoryType.expense,
         name: title,
       ));
     }
@@ -142,6 +144,14 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   ) {
     isBudgetSet = event.isBudget;
     emit(UpdateCategoryBudgetState(event.isBudget));
+  }
+
+  FutureOr<void> _updateCategoryType(
+    UpdateCategoryTypeEvent event,
+    Emitter<CategoryState> emit,
+  ) {
+    type = event.type;
+    emit(CategoryTypeSelectedState(event.type));
   }
 
   FutureOr<void> _updateCategoryColor(

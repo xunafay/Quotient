@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
+import 'package:paisa/core/enum/category_types.dart';
 import 'package:paisa/core/use_case/use_case.dart';
 import 'package:paisa/features/category/domain/repository/category_repository.dart';
 
@@ -18,7 +19,7 @@ class AddCategoryUseCase implements UseCase<void, AddCategoryParams> {
       budget: params.budget,
       isBudget: params.isBudget,
       color: params.color,
-      isDefault: params.isDefault,
+      type: params.type,
     );
   }
 }
@@ -29,7 +30,7 @@ class AddCategoryParams extends Equatable {
   final String? description;
   final int? icon;
   final bool isBudget;
-  final bool isDefault;
+  final CategoryType type;
   final String? name;
 
   const AddCategoryParams({
@@ -38,7 +39,7 @@ class AddCategoryParams extends Equatable {
     this.description,
     this.icon,
     this.isBudget = false,
-    this.isDefault = false,
+    this.type = CategoryType.expense,
     this.name,
   });
 
@@ -49,7 +50,7 @@ class AddCategoryParams extends Equatable {
         description,
         icon,
         isBudget,
-        isDefault,
+        type,
         name,
       ];
 }

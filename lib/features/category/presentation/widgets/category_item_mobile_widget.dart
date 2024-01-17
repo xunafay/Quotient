@@ -42,8 +42,7 @@ class CategoryItemMobileWidget extends StatelessWidget {
             color: context.onSurfaceVariant,
           ),
         ),
-        trailing:
-            category.isDefault ?? false ? Icon(MdiIcons.swapHorizontal) : null,
+        // trailing: category.type ?? false ? Icon(MdiIcons.swapHorizontal) : null,
         subtitle: category.description == null || category.description == ''
             ? null
             : Text(
