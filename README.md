@@ -38,6 +38,12 @@
 - Account & budget wise overview
 - Manage categories
 
+### Contributing
+
+[Check out the issue board](https://github.com/users/xunafay/projects/16/views/2)
+
+All issues in the 'Ready' column are ready to be worked on. If you want to work on an issue, leave a comment on the issue and we will assign it to you.
+
 ### Steps to translate
 
 1. Create `.arb` file inside `lib/localization/app_<language_code>.arb` example `app_en.arb`
