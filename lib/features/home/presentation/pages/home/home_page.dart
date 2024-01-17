@@ -45,11 +45,12 @@ final destinations = [
     icon: Icon(MdiIcons.timetable),
     selectedIcon: Icon(MdiIcons.timetable),
   ),
-  Destination(
-    pageType: PageType.recurring,
-    icon: Icon(MdiIcons.cashSync),
-    selectedIcon: Icon(MdiIcons.cashSync),
-  ),
+  // TODO #21
+  // Destination(
+  //   pageType: PageType.recurring,
+  //   icon: Icon(MdiIcons.cashSync),
+  //   selectedIcon: Icon(MdiIcons.cashSync),
+  // ),
 ];
 
 class LandingPage extends StatelessWidget {
