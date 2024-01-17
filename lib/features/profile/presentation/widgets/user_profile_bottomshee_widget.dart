@@ -4,7 +4,6 @@ import 'package:image_picker/image_picker.dart';
 
 import 'package:paisa/core/common.dart';
 import 'package:paisa/features/profile/business/bloc/profile_bloc.dart';
-import 'package:paisa/features/settings/domain/use_case/setting_use_case.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 
 class UserProfileBottomSheetWidget extends StatelessWidget {

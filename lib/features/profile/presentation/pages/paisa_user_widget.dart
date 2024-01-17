@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:paisa/core/widgets/color_palette.dart';
 import 'package:paisa/features/home/presentation/widgets/welcome_widget.dart';
 import 'package:paisa/features/profile/presentation/widgets/user_profile_bottomshee_widget.dart';
-import 'package:paisa/features/settings/domain/use_case/setting_use_case.dart';
-import 'package:paisa/main.dart';
 
 class PaisaUserWidget extends StatelessWidget {
   const PaisaUserWidget({super.key});
