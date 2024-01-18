@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
+import 'package:paisa/core/enum/transaction_type.dart';
 import 'package:paisa/core/use_case/use_case.dart';
 import 'package:paisa/features/category/domain/repository/category_repository.dart';
 
@@ -20,7 +21,7 @@ class UpdateCategoryUseCase
       budget: params.budget,
       desc: params.description,
       isBudget: params.isBudget,
-      isDefault: params.isDefault,
+      type: params.type,
     );
   }
 }
@@ -33,7 +34,7 @@ class UpdateCategoryParams extends Equatable {
     this.description,
     this.icon,
     this.isBudget = false,
-    this.isDefault = false,
+    this.type = TransactionType.expense,
     this.name,
   });
 
@@ -42,7 +43,7 @@ class UpdateCategoryParams extends Equatable {
   final String? description;
   final int? icon;
   final bool isBudget;
-  final bool isDefault;
+  final TransactionType type;
   final int key;
   final String? name;
 
@@ -54,7 +55,7 @@ class UpdateCategoryParams extends Equatable {
         description,
         icon,
         isBudget,
-        isDefault,
+        type,
         name,
       ];
 }

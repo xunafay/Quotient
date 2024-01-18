@@ -5,12 +5,12 @@ import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:paisa/config/routes_name.dart';
+import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/core/constants/constants.dart';
-import 'package:paisa/core/enum/box_types.dart';
 import 'package:paisa/core/extensions/build_context_extension.dart';
-import 'package:paisa/core/extensions/category_extension.dart';
 import 'package:paisa/core/extensions/text_style_extension.dart';
 import 'package:paisa/core/extensions/color_extension.dart';
+import 'package:paisa/core/theme/custom_color.dart';
 import 'package:paisa/features/category/data/data_sources/default_category.dart';
 import 'package:paisa/features/category/data/data_sources/local/category_data_source.dart';
 import 'package:paisa/features/category/data/model/category_model.dart';
@@ -35,7 +35,7 @@ class _IntroCategoryAddWidgetState extends State<IntroCategoryAddWidget>
   @override
   void initState() {
     super.initState();
-    getIt.get<Box<CategoryModel>>().values.filterDefault.forEach((element) {
+    getIt.get<Box<CategoryModel>>().values.forEach((element) {
       defaultModels.remove(element);
     });
   }
@@ -143,7 +143,9 @@ class _IntroCategoryAddWidgetState extends State<IntroCategoryAddWidget>
                                 fontFamily: fontFamilyName,
                                 fontPackage: fontFamilyPackageName,
                               ),
-                              color: context.primary,
+                              color:
+                                  _transactionTypeColor(context, model.type) ??
+                                      context.primary,
                             ),
                           ))
                       .toList(),
@@ -176,6 +178,19 @@ class _IntroCategoryAddWidgetState extends State<IntroCategoryAddWidget>
         ),
       ),
     );
+  }
+
+  Color? _transactionTypeColor(BuildContext context, TransactionType? type) {
+    switch (type) {
+      case TransactionType.income:
+        return Theme.of(context).extension<CustomColors>()!.green;
+      case TransactionType.expense:
+        return Theme.of(context).extension<CustomColors>()!.red;
+      case TransactionType.transfer:
+        return Theme.of(context).extension<CustomColors>()!.blue;
+      default:
+        return Colors.brown.shade200;
+    }
   }
 
   @override

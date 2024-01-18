@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:paisa/core/common.dart';
+import 'package:paisa/core/enum/transaction_type.dart';
 import 'package:paisa/features/category/data/data_sources/local/category_data_source.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
 import 'package:paisa/features/category/domain/repository/category_repository.dart';
@@ -25,7 +26,7 @@ class CategoryRepositoryImpl extends CategoryRepository {
     required String? desc,
     required bool? isBudget,
     required double? budget,
-    required bool? isDefault,
+    required TransactionType? type,
   }) {
     return dataSources.add(CategoryModel(
       description: desc ?? '',
@@ -34,7 +35,7 @@ class CategoryRepositoryImpl extends CategoryRepository {
       budget: budget,
       isBudget: isBudget,
       color: color,
-      isDefault: isDefault ?? false,
+      type: type,
     ));
   }
 
@@ -62,7 +63,7 @@ class CategoryRepositoryImpl extends CategoryRepository {
     required String? desc,
     required double? budget,
     required bool isBudget,
-    required bool isDefault,
+    required TransactionType? type,
   }) {
     return dataSources.update(CategoryModel(
       description: desc,
@@ -70,7 +71,7 @@ class CategoryRepositoryImpl extends CategoryRepository {
       icon: icon,
       budget: budget,
       isBudget: isBudget,
-      isDefault: isDefault,
+      type: type,
       color: color,
       superId: key,
     ));

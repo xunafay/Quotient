@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:paisa/core/enum/transaction_type.dart';
 import 'package:paisa/core/extensions/build_context_extension.dart';
 import 'package:paisa/core/extensions/text_style_extension.dart';
 import 'package:paisa/core/extensions/color_extension.dart';
@@ -114,6 +115,7 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
+                            const TransferCategoryWidget(),
                             const SizedBox(height: 16),
                             CategoryNameWidget(controller: categoryController),
                             const SizedBox(height: 16),
@@ -127,7 +129,6 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
                       const CategoryIconPickerWidget(),
                       const CategoryColorWidget(),
                       SetBudgetWidget(controller: budgetController),
-                      const TransferCategoryWidget(),
                     ],
                   ),
                 ),
@@ -190,11 +191,11 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
+                          const TransferCategoryWidget(),
                           CategoryNameWidget(controller: categoryController),
                           const SizedBox(height: 16),
                           CategoryDescriptionWidget(controller: descController),
                           const SizedBox(height: 16),
-                          const TransferCategoryWidget(),
                         ],
                       ),
                     ),
@@ -321,14 +322,37 @@ class _TransferCategoryWidgetState extends State<TransferCategoryWidget> {
   Widget build(BuildContext context) {
     return BlocBuilder<CategoryBloc, CategoryState>(
       builder: (context, state) {
-        return SwitchListTile(
-          title: Text(context.loc.transferCategory),
-          value: BlocProvider.of<CategoryBloc>(context).isDefault ?? false,
-          onChanged: (value) {
-            setState(() {
-              BlocProvider.of<CategoryBloc>(context).isDefault = value;
-            });
-          },
+        return Row(
+          children: [
+            PaisaPillChip(
+              title: context.loc.expense,
+              onPressed: () {
+                context.read<CategoryBloc>().add(
+                    const UpdateCategoryTypeEvent(TransactionType.expense));
+              },
+              isSelected: BlocProvider.of<CategoryBloc>(context).type ==
+                  TransactionType.expense,
+            ),
+            PaisaPillChip(
+              title: context.loc.income,
+              onPressed: () {
+                context
+                    .read<CategoryBloc>()
+                    .add(const UpdateCategoryTypeEvent(TransactionType.income));
+              },
+              isSelected: BlocProvider.of<CategoryBloc>(context).type ==
+                  TransactionType.income,
+            ),
+            PaisaPillChip(
+              title: context.loc.transfer,
+              onPressed: () {
+                context.read<CategoryBloc>().add(
+                    const UpdateCategoryTypeEvent(TransactionType.transfer));
+              },
+              isSelected: BlocProvider.of<CategoryBloc>(context).type ==
+                  TransactionType.transfer,
+            ),
+          ],
         );
       },
     );

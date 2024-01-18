@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:paisa/config/routes_name.dart';
 import 'package:paisa/core/common.dart';
+import 'package:paisa/core/enum/transaction_type.dart';
+import 'package:paisa/core/theme/custom_color.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
 
 class CategoryItemMobileWidget extends StatelessWidget {
@@ -42,8 +44,7 @@ class CategoryItemMobileWidget extends StatelessWidget {
             color: context.onSurfaceVariant,
           ),
         ),
-        trailing:
-            category.isDefault ?? false ? Icon(MdiIcons.swapHorizontal) : null,
+        trailing: _trailingTypeIcon(context, category),
         subtitle: category.description == null || category.description == ''
             ? null
             : Text(
@@ -59,5 +60,30 @@ class CategoryItemMobileWidget extends StatelessWidget {
               ),
       ),
     );
+  }
+
+  Icon? _trailingTypeIcon(BuildContext context, CategoryEntity category) {
+    switch (category.type) {
+      case TransactionType.income:
+        return Icon(
+          MdiIcons.arrowBottomLeft,
+          color: Theme.of(context).extension<CustomColors>()!.green ??
+              context.secondary,
+        );
+      case TransactionType.expense:
+        return Icon(
+          MdiIcons.arrowTopRight,
+          color: Theme.of(context).extension<CustomColors>()!.red ??
+              context.secondary,
+        );
+      case TransactionType.transfer:
+        return Icon(
+          MdiIcons.swapHorizontal,
+          color: Theme.of(context).extension<CustomColors>()!.blue ??
+              context.secondary,
+        );
+      default:
+        return null;
+    }
   }
 }

@@ -13,7 +13,7 @@ extension CategoryModelHelper on CategoryModel {
       description: description,
       isBudget: isBudget,
       superId: superId,
-      isDefault: isDefault,
+      type: type,
     );
   }
 }
@@ -25,12 +25,6 @@ extension CategoryModelsHelper on Iterable<CategoryModel> {
 
   Iterable<CategoryModel> sort() =>
       sorted((a, b) => a.name!.compareTo(b.name!));
-
-  Iterable<CategoryModel> get filterDefault {
-    return where((element) => element.isDefault != null)
-        .where((element) => !element.isDefault!)
-        .sort();
-  }
 
   List<CategoryEntity> toEntities() =>
       sort().map((categoryModel) => categoryModel.toEntity()).toList();

@@ -5,6 +5,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:paisa/config/routes_name.dart';
 import 'package:paisa/core/common.dart';
+import 'package:paisa/core/enum/transaction_type.dart';
 import 'package:paisa/features/category/data/model/category_model.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
 import 'package:paisa/features/transaction/presentation/bloc/transaction_bloc.dart';
@@ -13,7 +14,9 @@ import 'package:paisa/main.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SelectCategoryIcon extends StatelessWidget {
-  const SelectCategoryIcon({Key? key}) : super(key: key);
+  const SelectCategoryIcon({Key? key, required this.type}) : super(key: key);
+
+  final TransactionType type;
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +24,8 @@ class SelectCategoryIcon extends StatelessWidget {
       valueListenable: getIt.get<Box<CategoryModel>>().listenable(),
       builder: (context, value, child) {
         final List<CategoryEntity> categories =
-            value.values.filterDefault.toEntities();
-
+            value.values.where((element) => element.type == type).toEntities();
+        debugPrint('categories: $categories');
         if (categories.isEmpty) {
           return ListTile(
             onTap: () => context.pushNamed(RoutesName.addCategory.name),
