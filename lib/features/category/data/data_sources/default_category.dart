@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/features/category/data/model/category_model.dart';
 
 final List<CategoryModel> defaultCategoriesData = [
@@ -62,5 +64,29 @@ final List<CategoryModel> defaultCategoriesData = [
     icon: MdiIcons.accountChild.codePoint,
     name: 'Childcare',
     color: Colors.primaries[11].value,
-  )
+  ),
+  CategoryModel(
+    icon: MdiIcons.giftOpen.codePoint,
+    name: 'Gifts',
+    color: Colors.primaries[13].value,
+    type: TransactionType.income,
+  ),
+  CategoryModel(
+    icon: MdiIcons.briefcase.codePoint,
+    name: 'Work',
+    color: Colors.primaries[14].value,
+    type: TransactionType.income,
+  ),
+  CategoryModel(
+    icon: MdiIcons.laptop.codePoint,
+    name: 'Freelance',
+    color: Colors.primaries[16].value,
+    type: TransactionType.income,
+  ),
+  CategoryModel(
+    icon: MdiIcons.swapHorizontal.codePoint,
+    name: 'Transfer',
+    color: Colors.primaries[15].value,
+    type: TransactionType.transfer,
+  ),
 ];
