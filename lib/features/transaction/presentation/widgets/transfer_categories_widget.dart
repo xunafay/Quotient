@@ -1,59 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:paisa/config/routes_name.dart';
 import 'package:paisa/core/common.dart';
+import 'package:paisa/core/enum/transaction_type.dart';
+import 'package:paisa/features/category/data/model/category_model.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
 import 'package:paisa/features/transaction/presentation/bloc/transaction_bloc.dart';
 import 'package:paisa/features/transaction/presentation/widgets/select_category_widget.dart';
+import 'package:paisa/main.dart';
 
 class TransferCategoriesWidget extends StatelessWidget {
   const TransferCategoriesWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<TransactionBloc>(context)
-        .add(const TransactionEvent.defaultCategory());
-    return BlocBuilder<TransactionBloc, TransactionState>(
-      buildWhen: (previous, current) => current is DefaultCategoriesState,
-      builder: (context, state) {
-        if (state is DefaultCategoriesState) {
-          if (state.categories.isEmpty) {
-            return ListTile(
-              onTap: () async {
-                await context.pushNamed(RoutesName.addCategory.name);
-                if (context.mounted) {
-                  BlocProvider.of<TransactionBloc>(context)
-                      .add(const TransactionEvent.defaultCategory());
-                }
-              },
-              title: Text(context.loc.addCategoryEmptyTitle),
-              subtitle: Text(context.loc.addCategoryEmptySubTitle),
-              trailing: const Icon(Icons.keyboard_arrow_right),
-            );
-          } else {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    context.loc.selectCategory,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall
-                        ?.copyWith(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                SelectDefaultCategoryWidget(
-                  categories: state.categories,
-                ),
-              ],
-            );
-          }
+    return ValueListenableBuilder<Box<CategoryModel>>(
+      valueListenable: getIt.get<Box<CategoryModel>>().listenable(),
+      builder: (context, value, child) {
+        final List<CategoryEntity> categories = value.values
+            .where((element) => element.type == TransactionType.transfer)
+            .toEntities();
+        if (categories.isEmpty) {
+          return ListTile(
+            onTap: () async {
+              await context.pushNamed(RoutesName.addCategory.name);
+              if (context.mounted) {
+                BlocProvider.of<TransactionBloc>(context)
+                    .add(const TransactionEvent.defaultCategory());
+              }
+            },
+            title: Text(context.loc.addCategoryEmptyTitle),
+            subtitle: Text(context.loc.addCategoryEmptySubTitle),
+            trailing: const Icon(Icons.keyboard_arrow_right),
+          );
         } else {
-          return const SizedBox.shrink();
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  context.loc.selectCategory,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall
+                      ?.copyWith(fontWeight: FontWeight.bold),
+                ),
+              ),
+              SelectDefaultCategoryWidget(
+                categories: categories
+                    .where(
+                        (element) => element.type == TransactionType.transfer)
+                    .toList(),
+              ),
+            ],
+          );
         }
       },
     );

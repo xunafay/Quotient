@@ -147,6 +147,7 @@ class _TransactionPageState extends State<TransactionPage> {
                         amountController: amountController,
                         descriptionController: descriptionController,
                         nameController: nameController,
+                        transactionType: state.transactionType,
                       );
                     }
                   } else {
@@ -234,9 +235,19 @@ class _TransactionPageState extends State<TransactionPage> {
                   ),
                   Expanded(
                     child: ListView(
-                      children: const [
-                        SelectedAccount(),
-                        SelectCategoryIcon(),
+                      children: [
+                        const SelectedAccount(),
+                        BlocBuilder<TransactionBloc, TransactionState>(
+                          builder: (context, state) {
+                            if (state is ChangeTransactionTypeState) {
+                              return SelectCategoryIcon(
+                                type: state.transactionType,
+                              );
+                            }
+
+                            return const SizedBox.shrink();
+                          },
+                        ),
                       ],
                     ),
                   ),

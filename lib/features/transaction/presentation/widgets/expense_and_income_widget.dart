@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paisa/core/enum/transaction_type.dart';
 import 'package:paisa/features/transaction/presentation/widgets/select_account_widget.dart';
 import 'package:paisa/features/transaction/presentation/widgets/select_category_widget.dart';
 import 'package:paisa/features/transaction/presentation/widgets/transaction_amount_widget.dart';
@@ -12,11 +13,13 @@ class ExpenseIncomeWidget extends StatelessWidget {
     required this.nameController,
     required this.descriptionController,
     required this.amountController,
+    required this.transactionType,
   });
 
   final TextEditingController amountController;
   final TextEditingController descriptionController;
   final TextEditingController nameController;
+  final TransactionType transactionType;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +39,9 @@ class ExpenseIncomeWidget extends StatelessWidget {
           child: ExpenseDatePickerWidget(),
         ),
         const SelectedAccount(),
-        const SelectCategoryIcon(),
+        SelectCategoryIcon(
+          type: transactionType,
+        ),
       ],
     );
   }
