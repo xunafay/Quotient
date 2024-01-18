@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:paisa/core/enum/category_types.dart';
+import 'package:paisa/core/enum/transaction_type.dart';
 import 'package:paisa/core/extensions/build_context_extension.dart';
 import 'package:paisa/core/extensions/text_style_extension.dart';
 import 'package:paisa/core/extensions/color_extension.dart';
@@ -327,32 +327,30 @@ class _TransferCategoryWidgetState extends State<TransferCategoryWidget> {
             PaisaPillChip(
               title: context.loc.expense,
               onPressed: () {
-                context
-                    .read<CategoryBloc>()
-                    .add(const UpdateCategoryTypeEvent(CategoryType.expense));
+                context.read<CategoryBloc>().add(
+                    const UpdateCategoryTypeEvent(TransactionType.expense));
               },
               isSelected: BlocProvider.of<CategoryBloc>(context).type ==
-                  CategoryType.expense,
+                  TransactionType.expense,
             ),
             PaisaPillChip(
               title: context.loc.income,
               onPressed: () {
                 context
                     .read<CategoryBloc>()
-                    .add(const UpdateCategoryTypeEvent(CategoryType.income));
+                    .add(const UpdateCategoryTypeEvent(TransactionType.income));
               },
               isSelected: BlocProvider.of<CategoryBloc>(context).type ==
-                  CategoryType.income,
+                  TransactionType.income,
             ),
             PaisaPillChip(
               title: context.loc.transfer,
               onPressed: () {
-                context
-                    .read<CategoryBloc>()
-                    .add(const UpdateCategoryTypeEvent(CategoryType.transfer));
+                context.read<CategoryBloc>().add(
+                    const UpdateCategoryTypeEvent(TransactionType.transfer));
               },
               isSelected: BlocProvider.of<CategoryBloc>(context).type ==
-                  CategoryType.transfer,
+                  TransactionType.transfer,
             ),
           ],
         );

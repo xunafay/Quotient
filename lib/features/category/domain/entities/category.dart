@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:paisa/core/enum/category_types.dart';
+import 'package:paisa/core/enum/transaction_type.dart';
 
 class CategoryEntity extends Equatable {
   const CategoryEntity({
@@ -10,7 +10,7 @@ class CategoryEntity extends Equatable {
     this.name,
     this.superId,
     this.isBudget = false,
-    this.type = CategoryType.expense,
+    this.type = TransactionType.expense,
   });
 
   final double? budget;
@@ -18,7 +18,7 @@ class CategoryEntity extends Equatable {
   final String? description;
   final int? icon;
   final bool? isBudget;
-  final CategoryType? type;
+  final TransactionType? type;
   final String? name;
   final int? superId;
 

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
-import 'package:paisa/core/enum/category_types.dart';
+import 'package:paisa/core/enum/transaction_type.dart';
 import 'package:paisa/core/use_case/use_case.dart';
 import 'package:paisa/features/category/domain/repository/category_repository.dart';
 
@@ -30,7 +30,7 @@ class AddCategoryParams extends Equatable {
   final String? description;
   final int? icon;
   final bool isBudget;
-  final CategoryType type;
+  final TransactionType type;
   final String? name;
 
   const AddCategoryParams({
@@ -39,7 +39,7 @@ class AddCategoryParams extends Equatable {
     this.description,
     this.icon,
     this.isBudget = false,
-    this.type = CategoryType.expense,
+    this.type = TransactionType.expense,
     this.name,
   });
 

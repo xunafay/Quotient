@@ -75,7 +75,7 @@ class UpdateCategoryBudgetState extends CategoryState {
 class CategoryTypeSelectedState extends CategoryState {
   const CategoryTypeSelectedState(this.categoryType);
 
-  final CategoryType categoryType;
+  final TransactionType categoryType;
 
   @override
   List<Object?> get props => [categoryType];

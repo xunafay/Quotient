@@ -70,7 +70,7 @@ class UpdateCategoryBudgetEvent extends CategoryEvent {
 class UpdateCategoryTypeEvent extends CategoryEvent {
   const UpdateCategoryTypeEvent(this.type);
 
-  final CategoryType type;
+  final TransactionType type;
 
   @override
   List<Object?> get props => [type];

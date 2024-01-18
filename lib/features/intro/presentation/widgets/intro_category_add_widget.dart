@@ -35,7 +35,7 @@ class _IntroCategoryAddWidgetState extends State<IntroCategoryAddWidget>
   @override
   void initState() {
     super.initState();
-    getIt.get<Box<CategoryModel>>().values.filterDefault.forEach((element) {
+    getIt.get<Box<CategoryModel>>().values.forEach((element) {
       defaultModels.remove(element);
     });
   }

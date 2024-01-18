@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:injectable/injectable.dart';
 import 'package:paisa/core/common_enum.dart';
-import 'package:paisa/core/enum/category_types.dart';
 import 'package:paisa/features/account/data/model/account_model.dart';
 import 'package:paisa/features/category/data/model/category_model.dart';
 import 'package:paisa/features/country_picker/data/models/country_model.dart';
@@ -65,8 +64,7 @@ class HiveAdapters {
       ..registerAdapter(CardTypeAdapter())
       ..registerAdapter(RecurringTypeAdapter())
       ..registerAdapter(RecurringModelAdapter())
-      ..registerAdapter(FilterExpenseAdapter())
-      ..registerAdapter(CategoryTypeAdapter());
+      ..registerAdapter(FilterExpenseAdapter());
   }
 
   String? get hivePath {

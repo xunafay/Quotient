@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:paisa/core/enum/category_types.dart';
+import 'package:paisa/core/enum/transaction_type.dart';
 import 'package:paisa/features/category/data/model/category_model.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
 import 'package:paisa/features/category/domain/use_case/category_use_case.dart';
@@ -44,7 +44,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   String? categoryTitle;
   CategoryEntity? currentCategory;
   bool? isBudgetSet = false;
-  CategoryType? type = CategoryType.expense;
+  TransactionType? type = TransactionType.expense;
   int? selectedColor;
   int? selectedIcon;
 
@@ -99,7 +99,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
         budget: budget ?? 0,
         isBudget: isBudgetSet ?? false,
         color: color,
-        type: type ?? CategoryType.expense,
+        type: type ?? TransactionType.expense,
       ));
     } else {
       if (currentCategory == null) return;
@@ -111,7 +111,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
         description: description,
         icon: icon,
         isBudget: isBudgetSet ?? false,
-        type: type ?? CategoryType.expense,
+        type: type ?? TransactionType.expense,
         name: title,
       ));
     }

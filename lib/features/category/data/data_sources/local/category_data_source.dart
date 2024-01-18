@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:injectable/injectable.dart';
-import 'package:paisa/core/enum/category_types.dart';
+import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/features/category/data/model/category_model.dart';
 
 abstract class LocalCategoryManager {
@@ -38,7 +38,7 @@ class LocalCategoryManagerDataSourceImpl implements LocalCategoryManager {
   @override
   List<CategoryModel> categories() {
     return categoryBox.values
-        .where((element) => element.type != CategoryType.transfer)
+        .where((element) => element.type != TransactionType.transfer)
         .toList();
   }
 
@@ -48,7 +48,7 @@ class LocalCategoryManagerDataSourceImpl implements LocalCategoryManager {
   @override
   List<CategoryModel> defaultCategories() {
     return categoryBox.values
-        .where((element) => element.type != CategoryType.transfer)
+        .where((element) => element.type != TransactionType.transfer)
         .toList();
   }
 

@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:paisa/core/enum/category_types.dart';
+import 'package:paisa/core/enum/transaction_type.dart';
 
 part 'category_model.g.dart';
 part 'category_model.freezed.dart';
@@ -17,9 +17,9 @@ class CategoryModel extends HiveObject with _$CategoryModel {
     @HiveField(6, defaultValue: 0) double? budget,
     @HiveField(7, defaultValue: false) bool? isBudget,
     @HiveField(8, defaultValue: 0xFFFFC107) int? color,
-    @Default(CategoryType.expense)
-    @HiveField(9, defaultValue: CategoryType.expense)
-    CategoryType? type,
+    @Default(TransactionType.expense)
+    @HiveField(9, defaultValue: TransactionType.expense)
+    TransactionType? type,
   }) = _CategoryModel;
 
   CategoryModel._();
