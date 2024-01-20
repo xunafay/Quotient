@@ -43,7 +43,7 @@ class BudgetPage extends StatelessWidget {
               final List<TransactionEntity> expenses =
                   BlocProvider.of<HomeBloc>(context)
                       .fetchExpensesFromCategoryId(category.superId!)
-                      .thisMonthExpensesList;
+                      .expenseList;
               return BudgetItem(category: category, expenses: expenses);
             },
             separatorBuilder: (BuildContext context, int index) =>
@@ -69,8 +69,10 @@ class BudgetItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final double totalExpenses = expenses.totalExpense;
     final double totalBudget =
-        (category.finalBudget == 0.0 ? 1 : category.finalBudget);
-    double difference = category.finalBudget - totalExpenses;
+        (category.monthlyAvailableBudgetSince(expenses) == 0.0
+            ? 1
+            : category.monthlyAvailableBudgetSince(expenses));
+    double difference = category.remainingBudget(expenses);
 
     return ListTile(
       isThreeLine: true,
@@ -103,7 +105,7 @@ class BudgetItem extends StatelessWidget {
                     children: [
                       TextSpan(
                         text:
-                            ' ${category.finalBudget.toFormateCurrency(context)}',
+                            ' ${category.monthlyAvailableBudgetSince(expenses).toFormateCurrency(context)}',
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       )
                     ],
