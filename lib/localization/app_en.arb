@@ -34,6 +34,16 @@
         "description": "Accounts text shown in the bottom navigation or drawer widget",
         "type": "text"
     },
+    "budgetRollover": "Budget Rollover",
+    "@budgetRollover": {
+        "description": "Rolls over the remaining budget to next month",
+        "type": "text"
+    },
+    "budgetRolloverDesc": "If you have any remaining budget at the end of the month, it will be added to the next month's budget",
+    "@budgetRolloverDesc": {
+        "description": "Rolls over the remaining budget to next month",
+        "type": "text"
+    },
     "overview": "Overview",
     "@overview": {
         "description": "Accounts text shown in the bottom navigation or drawer widget",

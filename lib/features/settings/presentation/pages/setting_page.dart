@@ -15,6 +15,7 @@ import 'package:paisa/features/settings/presentation/widgets/accounts_style_widg
 import 'package:paisa/features/settings/presentation/widgets/app_font_changer.dart';
 import 'package:paisa/features/settings/presentation/widgets/app_language_changer.dart';
 import 'package:paisa/features/settings/presentation/widgets/biometrics_auth_widget.dart';
+import 'package:paisa/features/settings/presentation/widgets/budget_rollover_widget.dart';
 import 'package:paisa/features/settings/presentation/widgets/country_change_widget.dart';
 import 'package:paisa/features/settings/presentation/widgets/setting_option.dart';
 import 'package:paisa/features/settings/presentation/widgets/settings_color_picker_widget.dart';
@@ -89,6 +90,8 @@ class SettingsPage extends StatelessWidget {
                   authenticate: getIt.get<Authenticate>(),
                 ),
                 AppLanguageChanger(settings: settings),
+                const Divider(),
+                const BudgetRollOverWidget(),
                 const Divider(),
                 const CountryChangeWidget(),
                 const Divider(),

@@ -7,12 +7,13 @@ import 'package:paisa/core/common.dart';
 import 'package:paisa/features/category/data/model/category_model.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
 import 'package:paisa/features/home/presentation/bloc/home/home_bloc.dart';
+import 'package:paisa/features/settings/domain/use_case/settings_use_case.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction.dart';
 import 'package:paisa/main.dart';
 import 'package:paisa/features/home/presentation/controller/summary_controller.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 
-class BudgetPage extends StatelessWidget {
+class BudgetPage extends StatefulWidget {
   const BudgetPage({
     super.key,
     required this.summaryController,
@@ -21,7 +22,17 @@ class BudgetPage extends StatelessWidget {
   final SummaryController summaryController;
 
   @override
+  State<BudgetPage> createState() => _BudgetPageState();
+}
+
+class _BudgetPageState extends State<BudgetPage> {
+  final SettingsUseCase settingsUseCase = getIt.get();
+
+  @override
   Widget build(BuildContext context) {
+    late bool rollover =
+        settingsUseCase.get(userBudgetRollOverKey, defaultValue: false);
+
     return PaisaAnnotatedRegionWidget(
       color: context.background,
       child: ValueListenableBuilder<Box<CategoryModel>>(
@@ -43,8 +54,12 @@ class BudgetPage extends StatelessWidget {
               final List<TransactionEntity> expenses =
                   BlocProvider.of<HomeBloc>(context)
                       .fetchExpensesFromCategoryId(category.superId!)
-                      .thisMonthExpensesList;
-              return BudgetItem(category: category, expenses: expenses);
+                      .expenseList;
+              return BudgetItem(
+                category: category,
+                expenses: expenses,
+                rollover: rollover,
+              );
             },
             separatorBuilder: (BuildContext context, int index) =>
                 const Divider(),
@@ -60,17 +75,27 @@ class BudgetItem extends StatelessWidget {
     super.key,
     required this.category,
     required this.expenses,
+    required this.rollover,
   });
 
   final CategoryEntity category;
   final List<TransactionEntity> expenses;
+  final bool rollover;
 
   @override
   Widget build(BuildContext context) {
     final double totalExpenses = expenses.totalExpense;
-    final double totalBudget =
-        (category.finalBudget == 0.0 ? 1 : category.finalBudget);
-    double difference = category.finalBudget - totalExpenses;
+    double totalBudget = 0;
+    double difference = 0;
+    if (rollover) {
+      totalBudget = (category.monthlyAvailableBudgetSince(expenses) == 0.0
+          ? 1
+          : category.monthlyAvailableBudgetSince(expenses));
+      difference = category.remainingBudget(expenses);
+    } else {
+      totalBudget = (category.finalBudget == 0.0 ? 1 : category.finalBudget);
+      difference = category.finalBudget - totalExpenses;
+    }
 
     return ListTile(
       isThreeLine: true,
@@ -103,7 +128,7 @@ class BudgetItem extends StatelessWidget {
                     children: [
                       TextSpan(
                         text:
-                            ' ${category.finalBudget.toFormateCurrency(context)}',
+                            ' ${rollover ? category.monthlyAvailableBudgetSince(expenses).toFormateCurrency(context) : category.finalBudget.toFormateCurrency(context)}',
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       )
                     ],
