@@ -6,6 +6,7 @@ import 'package:paisa/config/routes.dart';
 import 'package:paisa/config/routes_name.dart';
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/common_enum.dart';
+import 'package:paisa/core/enum/app_theme.dart';
 import 'package:paisa/core/enum/calendar_formats.dart';
 import 'package:paisa/core/widgets/choose_calendar_format_widget.dart';
 import 'package:paisa/core/widgets/choose_theme_mode_widget.dart';
@@ -31,7 +32,7 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentTheme = ThemeMode.values[getIt
+    final currentTheme = AppThemeMode.values[getIt
         .get<Box<dynamic>>(instanceName: BoxType.settings.name)
         .get(themeModeKey, defaultValue: 0)];
     final currentFormat = CalendarFormats.values[getIt

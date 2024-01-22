@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:paisa/config/routes.dart';
 import 'package:paisa/core/common.dart';
+import 'package:paisa/core/enum/app_theme.dart';
 import 'package:paisa/core/theme/app_theme.dart';
 import 'package:paisa/features/account/presentation/bloc/accounts_bloc.dart';
 import 'package:paisa/features/country_picker/data/models/country_model.dart';
@@ -71,7 +72,7 @@ class _PaisaAppState extends State<PaisaApp> {
             dynamicThemeKey,
             defaultValue: false,
           );
-          final ThemeMode themeMode = ThemeMode.values[value.get(
+          final AppThemeMode appThemeMode = AppThemeMode.values[value.get(
             themeModeKey,
             defaultValue: 0,
           )];
@@ -109,9 +110,17 @@ class _PaisaAppState extends State<PaisaApp> {
               builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
                 ColorScheme lightColorScheme;
                 ColorScheme darkColorScheme;
+                ColorScheme amoledColorScheme;
                 if (lightDynamic != null && darkDynamic != null && isDynamic) {
                   lightColorScheme = lightDynamic.harmonized();
                   darkColorScheme = darkDynamic.harmonized();
+                  amoledColorScheme = darkDynamic
+                      .copyWith(
+                        surface: Colors.black,
+                        surfaceVariant: Colors.grey[900],
+                        background: Colors.black,
+                      )
+                      .harmonized();
                 } else {
                   lightColorScheme = ColorScheme.fromSeed(
                     seedColor: primaryColor,
@@ -120,13 +129,21 @@ class _PaisaAppState extends State<PaisaApp> {
                     seedColor: primaryColor,
                     brightness: Brightness.dark,
                   );
+                  amoledColorScheme = ColorScheme.fromSeed(
+                    seedColor: primaryColor,
+                    surface: Colors.black,
+                    surfaceVariant: Colors.grey[900],
+                    background: Colors.black,
+                    brightness: Brightness.dark,
+                  );
                 }
+                debugPrint('theme: ${appThemeMode.themeName}');
 
                 return MaterialApp.router(
                   locale: locale,
                   routerConfig: goRouter,
                   debugShowCheckedModeBanner: false,
-                  themeMode: themeMode,
+                  themeMode: appThemeMode.themeMode,
                   localizationsDelegates:
                       AppLocalizations.localizationsDelegates,
                   supportedLocales: AppLocalizations.supportedLocales,
@@ -141,14 +158,23 @@ class _PaisaAppState extends State<PaisaApp> {
                     ThemeData.light().dividerColor,
                     SystemUiOverlayStyle.dark,
                   ),
-                  darkTheme: appTheme(
-                    context,
-                    darkColorScheme,
-                    fontPreference,
-                    darkTextTheme,
-                    ThemeData.dark().dividerColor,
-                    SystemUiOverlayStyle.light,
-                  ),
+                  darkTheme: appThemeMode == AppThemeMode.amoled
+                      ? appTheme(
+                          context,
+                          amoledColorScheme,
+                          fontPreference,
+                          darkTextTheme,
+                          ThemeData.dark().dividerColor,
+                          SystemUiOverlayStyle.light,
+                        )
+                      : appTheme(
+                          context,
+                          darkColorScheme,
+                          fontPreference,
+                          darkTextTheme,
+                          ThemeData.dark().dividerColor,
+                          SystemUiOverlayStyle.light,
+                        ),
                 );
               },
             ),
