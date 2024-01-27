@@ -10,46 +10,56 @@ class VariableFABSize extends StatelessWidget {
     super.key,
     required this.onPressed,
     required this.icon,
+    required this.tooltip,
   });
 
   final IconData icon;
   final VoidCallback onPressed;
 
+  /// Tooltip for FAB, required for accessibility reasons
+  final String tooltip;
+
   @override
   Widget build(BuildContext context) {
-    return ScreenTypeLayout.builder(tablet: (context) {
-      return FloatingActionButton(
-        onPressed: onPressed,
-        child: Icon(icon),
-      );
-    }, mobile: (context) {
-      return ValueListenableBuilder<Box<dynamic>>(
-        valueListenable: Provider.of<Box<dynamic>>(context).listenable(
-          keys: [smallSizeFabKey],
-        ),
-        builder: (context, value, child) {
-          final isSmallSize = value.get(smallSizeFabKey, defaultValue: false);
-          if (isSmallSize) {
-            return FloatingActionButton(
-              backgroundColor: context.secondaryContainer,
-              onPressed: onPressed,
-              child: Icon(
-                icon,
-                color: context.onSecondaryContainer,
-              ),
-            );
-          } else {
-            return FloatingActionButton.large(
-              backgroundColor: context.secondaryContainer,
-              onPressed: onPressed,
-              child: Icon(
-                icon,
-                color: context.onSecondaryContainer,
-              ),
-            );
-          }
-        },
-      );
-    });
+    return ScreenTypeLayout.builder(
+      tablet: (context) {
+        return FloatingActionButton(
+          onPressed: onPressed,
+          tooltip: tooltip,
+          child: Icon(icon),
+        );
+      },
+      mobile: (context) {
+        return ValueListenableBuilder<Box<dynamic>>(
+          valueListenable: Provider.of<Box<dynamic>>(context).listenable(
+            keys: [smallSizeFabKey],
+          ),
+          builder: (context, value, child) {
+            final isSmallSize = value.get(smallSizeFabKey, defaultValue: false);
+            if (isSmallSize) {
+              return FloatingActionButton(
+                backgroundColor: context.secondaryContainer,
+                onPressed: onPressed,
+                tooltip: tooltip,
+                child: Icon(
+                  icon,
+                  color: context.onSecondaryContainer,
+                ),
+              );
+            } else {
+              return FloatingActionButton.large(
+                backgroundColor: context.secondaryContainer,
+                onPressed: onPressed,
+                tooltip: tooltip,
+                child: Icon(
+                  icon,
+                  color: context.onSecondaryContainer,
+                ),
+              );
+            }
+          },
+        );
+      },
+    );
   }
 }
