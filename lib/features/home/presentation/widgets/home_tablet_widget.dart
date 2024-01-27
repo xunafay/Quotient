@@ -47,7 +47,7 @@ class HomeTabletWidget extends StatelessWidget {
               backgroundColor: context.surface,
               selectedIndex: homeBloc.selectedIndex,
               onDestinationSelected: (index) {
-                if (index == 7) {
+                if (index == destinations.length) {
                   context.pushNamed(RoutesName.settings.name);
                 } else {
                   homeBloc.add(CurrentIndexEvent(index));

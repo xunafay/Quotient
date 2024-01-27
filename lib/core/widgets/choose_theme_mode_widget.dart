@@ -3,6 +3,7 @@ import 'package:hive_flutter/adapters.dart';
 
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/common_enum.dart';
+import 'package:paisa/core/enum/app_theme.dart';
 import 'package:paisa/main.dart';
 
 class ChooseThemeModeWidget extends StatefulWidget {
@@ -11,14 +12,14 @@ class ChooseThemeModeWidget extends StatefulWidget {
     required this.currentTheme,
   }) : super(key: key);
 
-  final ThemeMode currentTheme;
+  final AppThemeMode currentTheme;
 
   @override
   ChooseThemeModeWidgetState createState() => ChooseThemeModeWidgetState();
 }
 
 class ChooseThemeModeWidgetState extends State<ChooseThemeModeWidget> {
-  late ThemeMode currentIndex = widget.currentTheme;
+  late AppThemeMode currentIndex = widget.currentTheme;
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +34,13 @@ class ChooseThemeModeWidgetState extends State<ChooseThemeModeWidget> {
               style: context.titleLarge,
             ),
           ),
-          ...ThemeMode.values
+          ...AppThemeMode.values
               .map(
                 (e) => RadioListTile(
                   value: e,
                   activeColor: context.primary,
                   groupValue: currentIndex,
-                  onChanged: (ThemeMode? value) {
+                  onChanged: (AppThemeMode? value) {
                     currentIndex = value!;
                     setState(() {});
                   },
