@@ -78,7 +78,7 @@ All issues in the 'Ready' column are ready to be worked on. If you want to work 
    * Navigate to the project directory and run `flutter pub get` to install the required dependencies.
 3. Build generated files:
    * Run `dart run build_runner build --delete-conflicting-outputs` to generate required files.
-   * Run `flutter_rust_bridge_codegen generate --watch` to generate required rust bridge files.
+   * Run `flutter_rust_bridge_codegen generate --watch` to generate required rust bridge files and watch for changes.
 4. Run the App:
    * Connect a device or emulator and run the app using `flutter run --flavor dev` or through your IDE.
 

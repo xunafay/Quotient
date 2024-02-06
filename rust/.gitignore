@@ -1,1 +1,4 @@
 /target
+src/frb_generated.io.rs
+src/frb_generated.rs
+src/frb_generated.web.rs
