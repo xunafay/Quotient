@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:paisa/core/enum/box_types.dart';
+import 'package:paisa/features/profile/business/bloc/profile_bloc.dart';
 import 'package:paisa/features/recurring/domain/repository/recurring_repository.dart';
 import 'package:paisa/app.dart';
 import 'package:paisa/dependency_injection/dependency_injection.dart';
@@ -34,9 +35,20 @@ Future<void> main() async {
   final Box<dynamic> settings =
       getIt.get<Box<dynamic>>(instanceName: BoxType.settings.name);
   runApp(
-    RepositoryProvider(
-      create: (context) => profileRepository,
-      child: PaisaApp(settings: settings),
+    MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<ProfileRepository>(
+          create: (context) => profileRepository,
+        ),
+      ],
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => ProfileBloc(context.read<ProfileRepository>()),
+          ),
+        ],
+        child: PaisaApp(settings: settings),
+      ),
     ),
   );
 }
