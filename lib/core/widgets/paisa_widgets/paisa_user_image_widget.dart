@@ -25,7 +25,7 @@ class PaisaUserImageWidget extends StatelessWidget {
       builder: (context, state) {
         String image = '';
         if (state is ProfileLoadedState) {
-          image = state.image;
+          image = state.profile.image ?? '';
         }
 
         if (image == 'no-image') {

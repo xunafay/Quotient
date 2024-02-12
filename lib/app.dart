@@ -137,7 +137,6 @@ class _PaisaAppState extends State<PaisaApp> {
                     brightness: Brightness.dark,
                   );
                 }
-                debugPrint('theme: ${appThemeMode.themeName}');
 
                 return MaterialApp.router(
                   locale: locale,

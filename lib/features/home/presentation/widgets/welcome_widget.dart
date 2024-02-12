@@ -1,10 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/adapters.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:paisa/core/common.dart';
-import 'package:paisa/core/common_enum.dart';
-import 'package:paisa/main.dart';
+import 'package:paisa/features/profile/business/bloc/profile_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class UserImageWidget extends StatelessWidget {
@@ -17,15 +16,17 @@ class UserImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<Box>(
-      valueListenable: getIt
-          .get<Box<dynamic>>(instanceName: BoxType.settings.name)
-          .listenable(keys: [userImageKey, userNameKey]),
-      builder: (context, value, _) {
-        String image = value.get(userImageKey, defaultValue: '');
+    return BlocBuilder<ProfileBloc, ProfileState>(
+      builder: (context, state) {
+        if ((state is! ProfileLoadedState)) {
+          return const SizedBox.shrink();
+        }
+
+        String image = state.profile.image ?? '';
         if (image == 'no-image') {
           image = '';
         }
+
         return ScreenTypeLayout.builder(
           mobile: (p0) => Builder(
             builder: (context) {

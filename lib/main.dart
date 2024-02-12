@@ -27,9 +27,10 @@ Future<void> main() async {
   await configInjector(getIt);
   getIt.get<RecurringRepository>().checkForRecurring();
 
-  ProfileRepository profileRepository = ProfileRepository(
+  ProfileRepository profileRepository = await createProfileRepository(
     db: await openProfileDb(
-      path: getApplicationDocumentsDirectory().toString(),
+      path:
+          "${(await getApplicationDocumentsDirectory()).path}/quotient/profile.db",
     ),
   );
   final Box<dynamic> settings =

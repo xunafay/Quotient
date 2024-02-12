@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:paisa/src/rust/api/db/db.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
@@ -27,32 +28,36 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
     on<ProfileImageUpdateEvent>((event, emit) async {
       await repository.setImage(value: event.image);
-      final profile = await repository.getProfile(); // TODO improve
       emit(ProfileLoadedState(
-        name: profile.name ?? '',
-        image: event.image,
+        profile: Profile(
+          image: event.image,
+          name: (state as ProfileLoadedState).profile.name,
+        ),
       ));
     });
 
-    on<ProfileUpdateEvent>((event, emit) async {
+    on<ProfileUpdateNameEvent>((event, emit) async {
       await repository.setName(value: event.name);
-      final profile = await repository.getProfile(); // TODO improve
       emit(ProfileLoadedState(
-        name: event.name,
-        image: profile.image ?? '',
+        profile: Profile(
+          image: (state as ProfileLoadedState).profile.image,
+          name: event.name,
+        ),
       ));
     });
 
-    on<ProfileLoadEvent>((event, emit) async {
-      final profile = await repository.getProfile();
-      emit(ProfileLoadedState(
-        name: profile.name ?? '',
-        image: profile.image ?? '',
-      ));
+    on<ProfileChangedEvent>((event, emit) async {
+      emit(ProfileLoadedState(profile: event.profile));
     });
 
-    // Start loading profile data
-    add(ProfileLoadEvent());
+    on<ProfileErroredEvent>((event, emit) async {
+      emit(ProfileErrorState(failure: event.failure));
+    });
+
+    (() async {
+      debugPrint("initializing profile");
+      add(ProfileChangedEvent(profile: await repository.getProfile()));
+    })();
   }
 
   final ProfileRepository repository;

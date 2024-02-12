@@ -5,12 +5,10 @@ sealed class ProfileState {}
 @CopyWith()
 final class ProfileLoadedState extends ProfileState {
   ProfileLoadedState({
-    required this.name,
-    required this.image,
+    required this.profile,
   });
 
-  final String name;
-  final String image;
+  final Profile profile;
 }
 
 final class ProfileLoadingState extends ProfileState {}

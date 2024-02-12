@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/adapters.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:paisa/features/profile/business/bloc/profile_bloc.dart';
-import 'package:paisa/features/profile/data/repositories/profile_repository.dart';
 
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
+import 'package:paisa/src/rust/api/db/db.dart';
 import 'package:provider/provider.dart';
 
 class IntroImagePickerWidget extends StatelessWidget {
@@ -18,7 +17,9 @@ class IntroImagePickerWidget extends StatelessWidget {
     final ImagePicker picker = ImagePicker();
     picker.pickImage(source: ImageSource.gallery).then((pickedFile) {
       if (pickedFile != null) {
-        Provider.of<Box<dynamic>>(context).put(userImageKey, pickedFile.path);
+        context
+            .read<ProfileBloc>()
+            .add(ProfileImageUpdateEvent(image: pickedFile.path));
       }
     });
   }

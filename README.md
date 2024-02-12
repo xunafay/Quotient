@@ -72,6 +72,9 @@ All issues in the 'Ready' column are ready to be worked on. If you want to work 
 3. Run the app and check once
 
 ### Steps to build project
+
+The flutter beta channel is required to build the project. To switch to the beta channel, run `flutter channel beta` and then run `flutter upgrade`.
+
 1. Clone the Flutter Project:
    * Use `git clone https://github.com/xunafay/Quotient.git` to download the project from the GitHub repository.
 2. Install Dependencies:

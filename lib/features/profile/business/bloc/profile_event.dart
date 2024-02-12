@@ -2,10 +2,16 @@ part of 'profile_bloc.dart';
 
 sealed class ProfileEvent {}
 
-final class ProfileLoadEvent extends ProfileEvent {}
+final class ProfileChangedEvent extends ProfileEvent {
+  ProfileChangedEvent({
+    required this.profile,
+  });
 
-final class ProfileUpdateEvent extends ProfileEvent {
-  ProfileUpdateEvent({
+  final Profile profile;
+}
+
+final class ProfileUpdateNameEvent extends ProfileEvent {
+  ProfileUpdateNameEvent({
     required this.name,
   });
 
@@ -26,4 +32,10 @@ final class ProfileImageUpdateEvent extends ProfileEvent {
   });
 
   final String image;
+}
+
+final class ProfileErroredEvent extends ProfileEvent {
+  final String failure;
+
+  ProfileErroredEvent({required this.failure});
 }

@@ -17,7 +17,7 @@ class UserProfileBottomSheetWidget extends StatelessWidget {
     final state = context.read<ProfileBloc>().state;
     var name = '';
     if (state is ProfileLoadedState) {
-      name = state.name;
+      name = state.profile.name ?? '';
     }
 
     controller.text = name;
@@ -83,7 +83,7 @@ class UserProfileBottomSheetWidget extends StatelessWidget {
                     ),
                   ),
                   onPressed: () => context.read<ProfileBloc>().add(
-                        ProfileUpdateEvent(name: controller.text),
+                        ProfileUpdateNameEvent(name: controller.text),
                       ),
                   child: Text(context.loc.update),
                 ),

@@ -1,5 +1,7 @@
 use serde::{Deserialize, Serialize};
 use anyhow::Result;
+use tracing::{debug, info};
+use flutter_rust_bridge::frb;
 
 use super::QuotientDb;
 
@@ -9,31 +11,45 @@ pub struct Profile {
     pub name: Option<String>,
 }
 
+
+/// This method is called from Dart and sets up the profile repository.
+pub fn create_profile_repository(db: ProfileProvider) -> ProfileRepository {
+    ProfileRepository { db }
+}
+
+/// Opaque due to the sled::Db in ProfileProvider
+#[frb(opaque)]
 pub struct ProfileRepository {
     pub db: ProfileProvider,
 }
 
 impl ProfileRepository {
     pub fn set_image(&self, value: String) {
+        debug!("setting profile image");
         self.db.put("image", &value).unwrap();
     }
 
     pub fn set_name(&self, value: String) {
+        debug!("setting profile name");
         self.db.put("name", &value).unwrap();
     }
 
     pub fn get_profile(&self) -> Profile {
+        debug!("getting profile");
         let image = self.db.get("image").map(|(_, value)| value);
         let name = self.db.get("name").map(|(_, value)| value);
         Profile { image, name }
     }
 }
 
+/// Opaque due to the sled::Db
+#[frb(opaque)]
 pub struct ProfileProvider {
     pub db: sled::Db,
 }
 
 pub fn open_profile_db(path: String) -> Result<ProfileProvider> {
+    info!("Opening profile db at {}", path);
     let db = sled::open(path)?;
     Ok(ProfileProvider { db })
 }

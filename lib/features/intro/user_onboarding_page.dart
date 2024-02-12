@@ -10,6 +10,7 @@ import 'package:paisa/features/intro/presentation/widgets/intro_category_add_wid
 import 'package:paisa/features/intro/presentation/widgets/intro_country_picker_widget.dart';
 import 'package:paisa/features/intro/presentation/widgets/intro_set_name_widget.dart';
 import 'package:paisa/features/intro/presentation/widgets/intro_image_picker_widget.dart';
+import 'package:paisa/features/profile/business/bloc/profile_bloc.dart';
 import 'package:paisa/main.dart';
 import 'package:provider/provider.dart';
 
@@ -55,24 +56,18 @@ class _UserOnboardingPageState extends State<UserOnboardingPage> {
   }
 
   Future<void> saveImage() async {
-    final String image = Provider.of<Box<dynamic>>(context, listen: false)
-        .get(userImageKey, defaultValue: '');
-    if (image.isEmpty) {
-      Provider.of<Box<dynamic>>(context, listen: false)
-          .put(userImageKey, 'no-image')
-          .then((value) => changePage(2));
-    } else {
-      changePage(2);
-    }
+    // context
+    //   .read<ProfileBloc>()
+    //   .add(ProfileImageUpdateEvent(image: ''));
+    changePage(2);
   }
 
-  void saveName() {
+  void saveName(BuildContext context) {
     if (_formState.currentState!.validate()) {
-      Provider.of<Box<dynamic>>(context, listen: false)
-          .put(userNameKey, _nameController.text)
-          .then((value) {
-        changePage(1);
-      });
+      context
+          .read<ProfileBloc>()
+          .add(ProfileUpdateNameEvent(name: _nameController.text));
+      changePage(1);
     }
   }
 
@@ -114,7 +109,7 @@ class _UserOnboardingPageState extends State<UserOnboardingPage> {
                   heroTag: 'next',
                   onPressed: () {
                     if (currentIndex == 0) {
-                      saveName();
+                      saveName(context);
                     } else if (currentIndex == 1) {
                       saveImage();
                     } else if (currentIndex == 2) {

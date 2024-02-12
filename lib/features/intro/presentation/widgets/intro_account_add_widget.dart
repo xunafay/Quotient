@@ -1,10 +1,10 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:hive_flutter/adapters.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:paisa/config/routes.dart';
 import 'package:paisa/config/routes_name.dart';
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/enum/card_type.dart';
@@ -14,6 +14,7 @@ import 'package:paisa/features/account/data/data_sources/default_account.dart';
 import 'package:paisa/features/account/data/model/account_model.dart';
 import 'package:paisa/features/intro/presentation/widgets/intro_image_picker_widget.dart';
 import 'package:paisa/main.dart';
+import 'package:paisa/src/rust/api/db/db.dart';
 
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -114,12 +115,14 @@ class _IntroAccountAddWidgetState extends State<IntroAccountAddWidget>
                   ...defaultModels
                       .sorted((a, b) => a.name!.compareTo(b.name!))
                       .map((model) => FilterChip(
-                            onSelected: (value) {
-                              dataSource.add(model.copyWith(
-                                  name: settings.get(
-                                userNameKey,
-                                defaultValue: model.name,
-                              )));
+                            onSelected: (value) async {
+                              final repo = context.read<ProfileRepository>();
+                              final profile = await repo.getProfile();
+                              dataSource.add(
+                                model.copyWith(
+                                  name: profile.name ?? model.name,
+                                ),
+                              );
                               setState(() {
                                 defaultModels.remove(model);
                               });
