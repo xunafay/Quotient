@@ -72,12 +72,16 @@ All issues in the 'Ready' column are ready to be worked on. If you want to work 
 3. Run the app and check once
 
 ### Steps to build project
+
+The flutter beta channel is required to build the project. To switch to the beta channel, run `flutter channel beta` and then run `flutter upgrade`.
+
 1. Clone the Flutter Project:
    * Use `git clone https://github.com/xunafay/Quotient.git` to download the project from the GitHub repository.
 2. Install Dependencies:
    * Navigate to the project directory and run `flutter pub get` to install the required dependencies.
 3. Build generated files:
    * Run `dart run build_runner build --delete-conflicting-outputs` to generate required files.
+   * Run `flutter_rust_bridge_codegen generate --watch` to generate required rust bridge files and watch for changes.
 4. Run the App:
    * Connect a device or emulator and run the app using `flutter run --flavor dev` or through your IDE.
 

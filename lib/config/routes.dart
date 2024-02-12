@@ -27,6 +27,7 @@ import 'package:paisa/features/intro/intro_page.dart';
 import 'package:paisa/features/intro/user_onboarding_page.dart';
 import 'package:paisa/features/home/presentation/controller/summary_controller.dart';
 import 'package:paisa/main.dart';
+import 'package:paisa/src/rust/api/db/db.dart';
 import 'package:provider/provider.dart';
 
 final Box<dynamic> settings = Hive.box(BoxType.settings.name);
@@ -313,17 +314,19 @@ final GoRouter goRouter = GoRouter(
       child: Text(state.error.toString()),
     );
   },
-  redirect: (_, GoRouterState state) async {
+  redirect: (context, GoRouterState state) async {
     final bool isLogging = state.matchedLocation == RoutesName.intro.path;
     bool isIntroDone = settings.get(userIntroKey, defaultValue: false);
     if (!isIntroDone) {
       return RoutesName.intro.path;
     }
-    final String name = settings.get(userNameKey, defaultValue: '');
+
+    final profileRepository = context.read<ProfileRepository>();
+    final String name = (await profileRepository.getProfile()).name ?? '';
     if (name.isEmpty && isLogging) {
       return RoutesName.userOnboarding.path;
     }
-    final String image = settings.get(userImageKey, defaultValue: '');
+    final String image = (await profileRepository.getProfile()).image ?? '';
     if (image.isEmpty && isLogging) {
       return RoutesName.userOnboarding.path;
     }

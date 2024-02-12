@@ -79,3 +79,7 @@ android/app/google-services.json
 *.g.dart
 *.freezed.dart
 dependency_injection.config.dart
+
+# Rust bridge generated files
+lib/src/rust/*
+!lib/src/rust/.gitkeep
