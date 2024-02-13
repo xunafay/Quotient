@@ -27,7 +27,7 @@ import 'package:paisa/features/intro/intro_page.dart';
 import 'package:paisa/features/intro/user_onboarding_page.dart';
 import 'package:paisa/features/home/presentation/controller/summary_controller.dart';
 import 'package:paisa/main.dart';
-import 'package:paisa/src/rust/api/db/db.dart';
+import 'package:paisa/src/rust/api/db/profile.dart';
 import 'package:provider/provider.dart';
 
 final Box<dynamic> settings = Hive.box(BoxType.settings.name);

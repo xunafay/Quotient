@@ -5,8 +5,7 @@ import 'package:paisa/features/profile/business/bloc/profile_bloc.dart';
 
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
-import 'package:paisa/src/rust/api/db/db.dart';
-import 'package:provider/provider.dart';
+import 'package:paisa/src/rust/api/db/profile.dart';
 
 class IntroImagePickerWidget extends StatelessWidget {
   const IntroImagePickerWidget({

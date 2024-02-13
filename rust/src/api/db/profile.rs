@@ -26,18 +26,18 @@ pub struct ProfileRepository {
 impl ProfileRepository {
     pub fn set_image(&self, value: String) {
         debug!("setting profile image");
-        self.db.put("image", &value).unwrap();
+        self.db.put(&"image".to_string(), &value).unwrap();
     }
 
     pub fn set_name(&self, value: String) {
         debug!("setting profile name");
-        self.db.put("name", &value).unwrap();
+        self.db.put(&"name".to_string(), &value).unwrap();
     }
 
     pub fn get_profile(&self) -> Profile {
         debug!("getting profile");
-        let image = self.db.get("image").map(|(_, value)| value);
-        let name = self.db.get("name").map(|(_, value)| value);
+        let image = self.db.get(&"image".to_string()).map(|(_, value)| value);
+        let name = self.db.get(&"name".to_string()).map(|(_, value)| value);
         Profile { image, name }
     }
 }
@@ -67,25 +67,25 @@ impl QuotientDb for ProfileProvider {
         self.db.flush().unwrap();
     }
 
-    fn insert(&self, value: &str) -> Result<Self::Key> {
+    fn insert(&self, value: &Self::Value) -> Result<Self::Key> {
         let key = self.db.generate_id().unwrap().to_string();
         self.db.insert(key.clone(), bincode::serialize(value).unwrap())?;
         Ok(key)
     }
 
-    fn put(&self, key: &str, value: &str) -> Result<()> {
+    fn put(&self, key: &Self::Key, value: &Self::Value) -> Result<()> {
         self.db.insert(key, bincode::serialize(value).unwrap())?;
         Ok(())
     }
 
-    fn get(&self, key: &str) -> Option<(Self::Key, Self::Value)> {
+    fn get(&self, key: &Self::Key) -> Option<(Self::Key, Self::Value)> {
         match self.db.get(key) {
             Ok(Some(value)) => Some((key.to_string(), bincode::deserialize(&value).unwrap())),
             _ => None,
         }
     }
 
-    fn delete(&self, key: &str) -> Result<()> {
+    fn delete(&self, key: &Self::Key) -> Result<()> {
         self.db.remove(key)?;
         Ok(())
     }

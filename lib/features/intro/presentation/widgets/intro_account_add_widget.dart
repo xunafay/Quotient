@@ -14,7 +14,7 @@ import 'package:paisa/features/account/data/data_sources/default_account.dart';
 import 'package:paisa/features/account/data/model/account_model.dart';
 import 'package:paisa/features/intro/presentation/widgets/intro_image_picker_widget.dart';
 import 'package:paisa/main.dart';
-import 'package:paisa/src/rust/api/db/db.dart';
+import 'package:paisa/src/rust/api/db/profile.dart';
 
 import 'package:responsive_builder/responsive_builder.dart';
 

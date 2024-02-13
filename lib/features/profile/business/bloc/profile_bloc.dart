@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:paisa/src/rust/api/db/db.dart';
+import 'package:paisa/src/rust/api/db/profile.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 
