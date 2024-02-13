@@ -7,7 +7,7 @@ import 'package:paisa/features/profile/business/bloc/profile_bloc.dart';
 import 'package:paisa/features/recurring/domain/repository/recurring_repository.dart';
 import 'package:paisa/app.dart';
 import 'package:paisa/dependency_injection/dependency_injection.dart';
-import 'package:paisa/src/rust/api/db/db.dart';
+import 'package:paisa/src/rust/api/db/profile.dart';
 import 'package:paisa/src/rust/api/logs.dart';
 import 'package:paisa/src/rust/frb_generated.dart';
 import 'package:path_provider/path_provider.dart';
